@@ -135,7 +135,8 @@
        
         var design_factors = {
           part_1_order: [1, 2],
-          part_2_order: [1, 2]
+          part_2_order: [1, 2],
+          part_2_version: [1, 2]
                   }
 
         var all_conditions = jsPsych.randomization.factorial(design_factors, 1);
@@ -166,6 +167,12 @@
         }
 
         if (condition_assignment['part_2_order'] == 1) {
+          assigned_order_2 = [0, 1, 2, 3, 4, 5];
+        } else{
+          assigned_order_2 = [5, 4, 3, 2, 1, 0];
+        }
+
+        if (condition_assignment['part_2_version'] == 1) {
           judgements = judgements_V1;
         } else{
           judgements = judgements_V2;
@@ -214,7 +221,7 @@
     for (let i = 0; i < 6; i++) {
         this.timeline.push({
             type: jsPsychImageButtonResponse,
-            stimulus: judgements[i],
+            stimulus: judgements[assigned_order_2[i]],
             stimulus_height: 650,
             choices: ["1", "2", "3", "4", "5", "6"],
         });
